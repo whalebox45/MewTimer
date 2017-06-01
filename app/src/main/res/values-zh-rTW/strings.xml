@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">喵喵定時器</string>
+    <string name="title_activity_edit_timer">編輯定時器</string>
+    <string name="tvhour">時</string>
+    <string name="tvminute">分</string>
+    <string name="tvsecond">秒</string>
+    <string name="tvname">名稱</string>
+    <string name="tvcancel">取消</string>
+    <string name="tvdone">確定</string>
+    <string name="tvsound">聲音</string>
+    <string name="exit_message">你確定要登出嗎?</string>
+    <string name="timeup_message">時間到!</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="tvuser">用戶名</string>
+    <string name="tvpasswd">密碼</string>
+    <string name="btnlogin">登入</string>
+    <string name="close_message">你確定要離開嗎?</string>
+</resources>

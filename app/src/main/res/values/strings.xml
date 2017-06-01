@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">MeowTimer</string>
+    <string name="title_activity_edit_timer">Edit Timer</string>
+    <string name="tvhour">Hour</string>
+    <string name="tvminute">Minute</string>
+    <string name="tvsecond">Second</string>
+    <string name="tvname">Timer Name</string>
+    <string name="tvcancel">CANCEL</string>
+    <string name="tvdone">OK</string>
+    <string name="tvsound">Sound</string>
+    <string name="exit_message">Do you want to logout?</string>
+    <string name="timeup_message">Time up!</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="tvuser">Username</string>
+    <string name="tvpasswd">Password</string>
+    <string name="btnlogin">Login</string>
+    <string name="close_message">Do you want to exit?</string>
+</resources>
