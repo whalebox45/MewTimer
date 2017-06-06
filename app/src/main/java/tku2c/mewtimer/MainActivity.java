@@ -109,6 +109,7 @@ public class MainActivity extends Activity {
                         long ct = System.currentTimeMillis();
                         switch (pd.getCurrentStatus()) {
                             case PAUSED:
+                            case STOPPED:
                             case RUNNING:
                                 pd.setCurrentStatus(ProductStatus.RUNNING);
                                 pd.setExpirationTime(ct + pd.getDuration());
@@ -219,7 +220,7 @@ public class MainActivity extends Activity {
 
     private class CountdownAdapter extends ArrayAdapter<Product> {
 
-        public List<ViewHolder> getArrViewHolder() {
+        List<ViewHolder> getArrViewHolder() {
             return arrViewHolder;
         }
 
@@ -270,17 +271,20 @@ public class MainActivity extends Activity {
                 holder.btnPlayPause.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        switch (mProduct.getCurrentStatus()) {
-                            case RUNNING:
-                                mProduct.setCurrentStatus(ProductStatus.PAUSED);
-                                break;
-                            case PAUSED:
-                            case STOPPED:
-                                if (mProduct.getCurrentStatus() == ProductStatus.STOPPED)
-                                    mProduct.setExpirationTime(System.currentTimeMillis() + mProduct.getDuration());
-                                mProduct.setCurrentStatus(ProductStatus.RUNNING);
-                                break;
+                        try {
+                            switch (mProduct.getCurrentStatus()) {
+                                case RUNNING:
+                                    mProduct.setCurrentStatus(ProductStatus.PAUSED);
+                                    break;
+                                case PAUSED:
+                                case STOPPED:
+                                    if (mProduct.getCurrentStatus() == ProductStatus.STOPPED)
+                                        mProduct.setExpirationTime(System.currentTimeMillis() + mProduct.getDuration());
+                                    mProduct.setCurrentStatus(ProductStatus.RUNNING);
+                                    break;
+                            }
                         }
+                        catch(Exception e){}
                     }
                 });
 
@@ -312,6 +316,7 @@ public class MainActivity extends Activity {
                         bundleEdit.putString("timer_name", mProduct.getName());
                         bundleEdit.putLong("timer_length", mProduct.getDuration());
                         intent.putExtras(bundleEdit);
+
                         ((Activity) getContext()).startActivityForResult(intent, MainActivity.EDIT_TIMER_REQUEST);
                     }
                 });
@@ -330,7 +335,7 @@ public class MainActivity extends Activity {
 
     }
 
-    class ViewHolder {
+    private class ViewHolder {
         TextView tvTimerName;
         TextView tvRemainTime;
         ImageButton btnPlayPause;
@@ -375,7 +380,7 @@ public class MainActivity extends Activity {
             }
         }
 
-        public void updateTimeRemaining(long currentTime) {
+        void updateTimeRemaining(long currentTime) {
 
             long timeDiff = mProduct.getExpirationTime() - currentTime;
             long duration = mProduct.getDuration();
